@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="resources/js/search.js"></script>
 <script>
 $(document).ready(function() {
-	
+	 
 	$('#rs_cnt_text').css('visibility', 'hidden');
 	$('#more_btn').hide();
 	$('#more_btn_seller').hide();
