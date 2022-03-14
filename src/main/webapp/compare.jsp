@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NHNdiquest - BRANDI</title>
+<title>비교 테스트중입니다</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/js/search.js"></script>
