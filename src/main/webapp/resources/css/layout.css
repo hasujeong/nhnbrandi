@@ -417,7 +417,10 @@ body {background:#fff url(../images/common/top_bg.png) repeat-x;overflow-y: scro
 .list_wrap .img_type li .flag {position:absolute;bottom:129px;left:0;}
 .list_wrap .img_type li .img_container {width:200px;height:231px; }
 .list_wrap .img_type li .img_container img {width:200px;height:231px;}
-.list_wrap .img_type li .title {display:block;margin:0px 0px 10px 10px;width:190px;height:25px;overflow:hidden;font-size:15px;color:#202429;word-break:break-all;white-space: nowrap;text-overflow: ellipsis;}
+.list_wrap .img_type li .title {
+	display:block;margin:0px 0px 10px 10px;width:190px;overflow:hidden;font-size:15px;color:#202429;height:55px;
+	/* height:25px;word-break:break-all;white-space: nowrap;text-overflow: ellipsis; */
+}
 .list_wrap .img_type li .seller {display:inline-block;margin:5px 0px 0px 10px;width:130px;height:20px;overflow:hidden;font-size:13px;color:#202429;word-break:break-all}
 .list_wrap .img_type li .icon {display:inline-block;margin:5px 0px 0px 0px;width:60px;height:20px;overflow:hidden;font-size:13px;color:#202429;word-break:break-all}
 .list_wrap .img_type li .icon img {width: 60px;}
@@ -872,6 +875,7 @@ a.result_more {color:#666;font-size:11px;float:right;margin-top:-30px; margin-ri
 
 #no_rs {width: 100%; min-height:100px; border: none; font-size: 14px; font-weight: bold; text-align: center; padding-top: 50px;}
 #more_btn {padding: 5px 30px 5px 30px; font-size: 14px; border-color: #444; cursor: pointer;}
+#more_btn_seller {padding: 5px 30px 5px 30px; font-size: 14px; border-color: #444; cursor: pointer;}
 
 #modal{
 	/* display:none;
@@ -885,8 +889,7 @@ a.result_more {color:#666;font-size:11px;float:right;margin-top:-30px; margin-ri
 	resize: both;
 	display:none;
 	position:fixed;
-	top: 50%; left: 50%;
-	transform: translate(-50%,-50%);
+	top: 10%; left: 10%;
 	max-width: 90%;
 	min-height: 30%;
 	background:#fff;
@@ -898,17 +901,26 @@ a.result_more {color:#666;font-size:11px;float:right;margin-top:-30px; margin-ri
 	font-weight: bold;
 	padding: 5px; 
 	background: #9e9e9e80;
+	cursor: pointer;
 }
 .modal-con .con{
 	font-size:15px; line-height:1.3;
 	padding: 10px;
 	width: calc(100% - 20px);
 	min-width: 500px;
-	height: 800px;
+	height: 500px;
 	word-break:break-all;
 }
 
 .modal-con .con span {color: #f44336;}
+
+.modal-con .con .BRANDI {color: #0B6DB7; font-weight: bolder;}
+.modal-con .con .BRANDI_JP {color: #0B6DB7; font-weight: bolder;}
+.modal-con .con .HIVER {color: #1C9249; font-weight: bolder;}
+.modal-con .con .MAMI {color: #FF4500; font-weight: bolder;}
+
+.modal-con .con .PRODUCT {color: #800080; font-weight: bolder;}
+.modal-con .con .SELLER {color: #F7B938; font-weight: bolder;}
 
 .modal-con .close{
 	display:block;

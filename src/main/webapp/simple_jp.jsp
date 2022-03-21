@@ -4,10 +4,10 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NHNdiquest - BRANDI</title>
+<title>NHNdiquest - BRANDI-JP</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="resources/js/search.js"></script>
+<script type="text/javascript" src="resources/js/search_jp.js"></script>
 <script>
 $(document).ready(function() {
 	
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$('#more_btn').hide();
 	$('#more_btn_seller').hide();
 	
-	fn_mall_tab("BRANDI", $('#mall_tab li').first());
+	fn_mall_tab("BRANDI_JP", $('#mall_tab li').first());
 	
 	$('#searchform_01').on('keyup', function(key) {
 		if(key.keyCode == 13) {

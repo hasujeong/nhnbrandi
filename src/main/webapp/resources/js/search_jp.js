@@ -4,6 +4,12 @@ brandi_map.set("store_url", "http://dev-search.diquest.com/FQbDmOzB8r6y0JA/v1/se
 brandi_map.set("return_field", "&return=name,price,discount_percent,discount_price,images_image_thumbnail_url,is_today_delivery,order_count,seller_name");
 brandi_map.set("return_field_store", "&return=name,type_name,images_profile_image_thumbnail_url,tags_name");
 
+const brandi_jp_map = new Map();
+brandi_jp_map.set("product_url", "http://dev-search.diquest.com/OGIwMGQ0NjEyZWF/v1/search/advanced.search");
+brandi_jp_map.set("store_url", "http://dev-search.diquest.com/YTVkYzdiYTEyNmM/v1/search/advanced.search");
+brandi_jp_map.set("return_field", "&return=name,price,discount_percent,discount_price,images_image_thumbnail_url,is_today_delivery,order_count,seller_name");
+brandi_jp_map.set("return_field_store", "&return=name,type_name,images_profile_image_thumbnail_url,tags_name");
+
 const hiver_map = new Map();
 hiver_map.set("product_url", "http://dev-search.diquest.com/mK36Wkt0iGPRFMl/v1/search/advanced.search");
 hiver_map.set("store_url", "http://dev-search.diquest.com/7LSC6BRXyNn98OI/v1/search/advanced.search");
@@ -736,7 +742,7 @@ function fn_price_format(price) {
 
 /**
 	쇼핑몷 탭 이동
-	BRANDI | HIVER | MAMI
+	BRANDI | BRANDI_JP | HIVER | MAMI
  */
 function fn_mall_tab(key, obj) {
 	
@@ -766,6 +772,10 @@ function fn_mall_tab(key, obj) {
 		$('#option_check').show();
 		$('#btn_compare').show();
 		$('#btn_compare').attr('href', '/search_brandi/compare.jsp');
+	} else if (key == "BRANDI_JP") {
+		$('#option_check').show();
+		$('#btn_compare').show();
+		$('#btn_compare').attr('href', '/search_brandi/compare_jp.jsp');
 	} else if (key == "HIVER") {
 		//$('#option_check').hide();
 		$('#btn_compare').show();
@@ -793,6 +803,8 @@ function fn_get_map(key) {
 	
 	if (mall == "BRANDI") {
 		val = brandi_map.get(key);
+	} else if (mall == "BRANDI_JP") {
+		val = brandi_jp_map.get(key);
 	} else if (mall == "HIVER") {
 		val = hiver_map.get(key);
 	} else if (mall == "MAMI") {

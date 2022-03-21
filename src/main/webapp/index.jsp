@@ -59,8 +59,6 @@ function openModal(modalname){
 		<div id="top_bar" class="top_bar"></div>
 		<!--// 상단 바 end -->
 	
-		<!-- <h1><a href="/search_brandi"><img src="resources/images/common/IMG_COMP_LOGIN_LOGO_A_diquest.png" alt="Mariner4 - Beyond the Limit" /></a></h1> -->
-	
 		<!-- 검색 start -->
 		<form name="frmSearch" id="frmSearch">
 			<input type="hidden" name="searchTerm" id="searchTerm" value="" /> 
@@ -137,8 +135,14 @@ function openModal(modalname){
 							<label>
 								<input type="checkbox" name="" value="" style="width: auto;" onclick="fn_delivery_search(this)" /> <img src="resources/images/ic-baro.png" style="width: 60px;" />
 							</label>
-							<label style="padding-left: 10px;">
-								<input type="checkbox" name="" value="" style="width: auto;" onclick="fn_sale_search(this)" /> 세일
+							
+							<div class="range-slider" style='--min:0; --max:100; --step:10; --value:0; --text-value:"0"; margin-top: 20px; margin-bottom: 5px;'>
+								<input id="range-slider-input" class="range-slider-input" type="range" min="0" max="100" step="10" value="0" oninput="$('#sale_text').html(this.value+'%'); this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value)); fn_sale_range($('#sale_chk'));">
+								<div class='range-slider__progress'></div>
+							</div>
+
+							<label style="">
+								<input type="checkbox" id="sale_chk" value="" style="width: auto;" onclick="fn_sale_search(this)" /> SALE <span id="sale_text" style="color: #ff5722; font-weight: bolder;">0%</span> 이상
 							</label>
 						</div>
 					</div>

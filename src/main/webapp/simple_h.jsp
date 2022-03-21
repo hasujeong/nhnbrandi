@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="resources/js/search.js"></script>
 <script>
 $(document).ready(function() {
-	 
+	
 	$('#rs_cnt_text').css('visibility', 'hidden');
 	$('#more_btn').hide();
 	$('#more_btn_seller').hide();
@@ -38,8 +38,6 @@ $(document).ready(function() {
 		<!-- 상단 바 start -->
 		<div class="top_bar"></div>
 		<!--// 상단 바 end -->
-	
-		<h1><a href="/search_brandi"><img src="resources/images/common/IMG_COMP_LOGIN_LOGO_A_diquest.png" alt="Mariner4 - Beyond the Limit" /></a></h1>
 	
 		<!-- 검색 start -->
 		<form name="frmSearch" id="frmSearch">

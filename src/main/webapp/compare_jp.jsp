@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NHNdiquest - BRANDI</title>
+<title>NHNdiquest - BRANDI-JP</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/js/search.js"></script>
@@ -14,6 +14,6 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<iframe src="https://www.brandi.co.kr/search" style="width:50%; height:100%; border: none;"></iframe><iframe src="/search_brandi/simple.jsp" style="width:50%; height:100%; border: none;"></iframe>
+<iframe src="https://brandi.co.jp/product/search.html" style="width:50%; height:100%; border: none;"></iframe><iframe src="/search_brandi/simple_jp.jsp" style="width:50%; height:100%; border: none;"></iframe>
 </body>
 </html>

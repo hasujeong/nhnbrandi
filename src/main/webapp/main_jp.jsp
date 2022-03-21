@@ -4,10 +4,14 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NHNdiquest - BRANDI</title>
+<title>NHNdiquest - TEST</title>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/jquery.modal.min.css" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="resources/js/search.js"></script>
+<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.modal.min.js"></script>
+<script type="text/javascript" src="resources/js/search_jp.js"></script>
+ 
 <script>
 $(document).ready(function() {
 	
@@ -23,9 +27,26 @@ $(document).ready(function() {
         }
     });
 	
-	$('#searchTerm').val('');
+	$("#modal .close").on('click',function(){
+		$("#modal").fadeOut(300);
+		$(".modal-con").fadeOut(300);
+	});
 	
+	$('#tothetop').click( function() {
+		var htmloffset = $('html').offset();
+		$('html, body').animate({scrollTop : htmloffset.top}, 200);
+	});
+
 });
+
+function openModal(modalname){
+	$("#modal").fadeIn(300);
+	$("."+modalname).fadeIn(300);
+	
+	$(".modal-con").draggable({
+		handle: "p"
+	});
+}
 </script>
 </head>
 
@@ -35,7 +56,7 @@ $(document).ready(function() {
 	<!-- 헤더 start -->
 	<div class="header">
 		<!-- 상단 바 start -->
-		<div class="top_bar"></div>
+		<div id="top_bar" class="top_bar"></div>
 		<!--// 상단 바 end -->
 	
 		<!-- 검색 start -->
@@ -47,12 +68,13 @@ $(document).ready(function() {
 			<input type="hidden" name="cate_l" id="cate_l" value="" /> 
 			<input type="hidden" name="cate_lm" id="cate_lm" value="" /> 
 			<input type="hidden" name="cate_lms" id="cate_lms" value="" /> 
+			<input type="hidden" name="cate_search_yn" id="cate_search_yn" value="" /> 
 			<input type="hidden" name="sprice" id="sprice" value="" /> 
 			<input type="hidden" name="eprice" id="eprice" value="" /> 
 			<input type="hidden" name="today_yn" id="today_yn" value="" /> 
 			<input type="hidden" name="sale_yn" id="sale_yn" value="" /> 
 			
-			<input type="hidden" name="mall_name" id="mall_name" value="" />  
+			<input type="hidden" name="mall_name" id="mall_name" value="" /> 
 		</form>
 		
 		<div class="search_area clear2">
@@ -69,6 +91,18 @@ $(document).ready(function() {
 				</div>
 				<a href="#" onclick="fn_reset()" class="btn_search">검색</a>
 			</fieldset>
+			<a href="/search_brandi/compare.jsp" target="blank" id="btn_compare" class="btn_compare">비교</a>
+			
+			<div class="search_tab_list">
+				<div class="list_condition mt_20">
+					<ul id="mall_tab">
+						<li title="BRANDI" onclick="fn_mall_tab('BRANDI', this)" class="on">BRANDI</li>
+						<li title="BRANDI-JP" onclick="fn_mall_tab('BRANDI_JP', this)">BRANDI-JP</li>
+						<li title="HIVER" onclick="fn_mall_tab('HIVER', this)">HIVER</li>
+						<li title="MAMI" onclick="fn_mall_tab('MAMI', this)">MAMI</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<!--// 검색 end -->
 	</div>
@@ -78,9 +112,61 @@ $(document).ready(function() {
 	<div id="content_prod" class="clear2">
 		<div class="search_result_text">
 			<div id="rs_cnt_text" style="width: 30%; float: left;"><strong id="rs_text"></strong> 검색결과<em id="rs_cnt" class="goodsCnt"></em>개</div>
-			<div onclick="fn_tab('p')" class="type_tab on" style="width: 200px;">상품</div>
-			<div onclick="fn_tab('s')" class="type_tab off" style="width: 200px;">스토어</div>
+			<div onclick="fn_tab('p')" class="type_tab on">상품</div>
+			<div onclick="fn_tab('s')" class="type_tab off">스토어</div>
 		</div>
+		
+		<div class="left_area">
+			<ul class="left_cat">
+				<li>
+					<p class="left_tit">
+						<a href="#" class="btn_cat">검색조건</a>
+					</p>
+					<div class="request_price">
+						<div class="op2">
+							<!-- 시작시 최소가격, 최대가격 값 설정 // -->
+							<input type="text" id="minPrice" title="검색 최소가격입력 단위 원(최소 0원 이상 입력 가능)" class="min" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />원
+							~ <input type="text" title="검색 최대가격입력 단위 원" id="maxPrice" class="max" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />원
+						</div>
+						<div class="btn_price">
+							<button class="disabled" onclick="fn_price_search()">가격</button>
+						</div>
+						
+						<div id="option_check" class="op2" style="padding-top: 10px;">
+							<label>
+								<input type="checkbox" name="" value="" style="width: auto;" onclick="fn_delivery_search(this)" /> <img src="resources/images/ic-baro.png" style="width: 60px;" />
+							</label>
+							
+							<div class="range-slider" style='--min:0; --max:100; --step:10; --value:0; --text-value:"0"; margin-top: 20px; margin-bottom: 5px;'>
+								<input id="range-slider-input" class="range-slider-input" type="range" min="0" max="100" step="10" value="0" oninput="$('#sale_text').html(this.value+'%'); this.parentNode.style.setProperty('--value',this.value); this.parentNode.style.setProperty('--text-value', JSON.stringify(this.value)); fn_sale_range($('#sale_chk'));">
+								<div class='range-slider__progress'></div>
+							</div>
+
+							<label style="">
+								<input type="checkbox" id="sale_chk" value="" style="width: auto;" onclick="fn_sale_search(this)" /> SALE <span id="sale_text" style="color: #ff5722; font-weight: bolder;">0%</span> 이상
+							</label>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="left_tit"><a href="#" class="btn_cat">카테고리</a></p>
+					<div class="category_tree">
+						<ul class="big_category" id="category_list">			
+							<!-- <li onclick="fn_category_search('A')" class="on">전체</li> -->
+						</ul>
+					</div>
+					<div id="category_tree2" class="category_tree">
+						<ul class="big_category" id="category_list2">			
+						</ul>
+					</div>
+					<div id="category_tree3" class="category_tree">
+						<ul class="big_category" id="category_list3">			
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--// 왼쪽영역 end -->
 		
 		<!-- 오른쪽영역 start -->
 		<div class="right_area" id="right_area">
@@ -127,8 +213,8 @@ $(document).ready(function() {
 	<div id="content_sell" class="clear2">
 		<div class="search_result_text">
 			<div id="rs_cnt_text_store" style="width: 30%; float: left;">스토어 검색결과<em id="rs_cnt_store" class="goodsCnt"></em></div>
-			<div onclick="fn_tab('p')" class="type_tab off" style="width: 200px;">상품</div>
-			<div onclick="fn_tab('s')" class="type_tab on" style="width: 200px;">스토어</div>
+			<div onclick="fn_tab('p')" class="type_tab off">상품</div>
+			<div onclick="fn_tab('s')" class="type_tab on">스토어</div>
 		</div>
 		
 		<!-- 오른쪽영역 start -->
@@ -157,9 +243,20 @@ $(document).ready(function() {
 <!-- footer start -->
 <div id="footer">
 <!-- Copyright(c) 2022 NHN diquest. All Right Reserved. -->
-<div id="search_log_text" class="search_log_text"></div>
+<!-- <div id="search_log_text" class="search_log_text"></div> -->
 </div>
 <!--// footer end -->
-	
+
+<div id="modal">
+<div class="modal-con modal1">
+	<a href="javascript:;" class="close">X</a>
+	<p class="title">api log</p>
+	<div id="search_log_text" class="con"></div>
+</div>
+</div>
+
+<a href="#top_bar" id="tothetop" class="btn_compare">▲ TOP</a>
+<a href="javascript:openModal('modal1');" id="log_open" class="btn_compare modal-open">log 확인</a>
+
 </body>
 </html>
